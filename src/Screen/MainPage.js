@@ -12,19 +12,24 @@ import CharacterArea from "../components/CharacterArea";
 const MainPage = () => {
  
   const [datas, setData] = useState( (JSON.parse(localStorage.getItem("LocalStorageData"))) || {});
+  const [search,setSearch]=useState("")
   useEffect(()=>{
     localStorage.setItem("LocalStorageData",JSON.stringify(datas))
   },[datas])
+
+useEffect(()=>{
   const fetchAll = async (username) => {
-      try {
-        const { data } = await axios.get(
-          `https://api.github.com/users/${username}`
-        );
-        setData(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    try {
+      const { data } = await axios.get(
+        `https://api.github.com/users/${username}`
+      );
+      setData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  fetchAll(search)
+},[search,datas])
 
 
   const mainPageItem = () => {
@@ -41,9 +46,9 @@ const MainPage = () => {
           <InputGroup className="mb-3">
             <FormControl
               placeholder="Search the User"
-              value={datas.login}
+              value={search}
               onChange={(e) => {
-                fetchAll(e.target.value);
+             setSearch(e.target.value);
               }}
             />
             

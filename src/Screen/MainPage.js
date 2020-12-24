@@ -14,7 +14,7 @@ import CharacterArea from "../components/CharacterArea";
 const MainPage = () => {
  
   const [datas, setData] = useState( (JSON.parse(localStorage.getItem("LocalStorageData"))) || {});
-  const [search,setSearch]=useState(null)
+  const [search,setSearch]=useState("")
   
 
   useEffect(()=>{
@@ -62,7 +62,7 @@ useEffect(()=>{
         </Col>
         <Col md={2}></Col>
       </Row>
-      <Row className="text-align py-3" style={{justifyContent: "center"}}>{!search?<Alert variant="warning">Search the User</Alert>:mainPageItem()}</Row>
+      <Row className="text-align py-3" style={{justifyContent: "center"}}>{datas.login?mainPageItem():<Alert variant="warning">Search the User</Alert>}</Row>
       
     </div>
   );

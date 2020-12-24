@@ -12,7 +12,7 @@ const CharacterArea = ({data}) => {
             <Card.Body>
             <Link to={"/details/"+login}><Card.Img src={avatar_url} className="hoverArrow" ></Card.Img></Link>
               <hr/>
-              <Tabs defaultActiveKey="status" id="uncontrolled-tab-example" style={{border:"none",placeContent:"center"}}>
+              <Tabs defaultActiveKey="Type" id="uncontrolled-tab-example" style={{border:"none",placeContent:"center"}}>
                 <Tab eventKey="UserId" title="UserId" style={{color:"black"}}>
                 <br/>
                   <h3>{id}</h3>

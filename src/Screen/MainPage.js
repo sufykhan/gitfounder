@@ -14,9 +14,8 @@ import CharacterArea from "../components/CharacterArea";
 const MainPage = () => {
  
   const [datas, setData] = useState( (JSON.parse(localStorage.getItem("LocalStorageData"))) || {});
-  const [search,setSearch]=useState("")
-  const [errorMessage,setError]=useState(null)
-  // const history=useHistory()
+  const [search,setSearch]=useState(null)
+  
 
   useEffect(()=>{
     localStorage.setItem("LocalStorageData",JSON.stringify(datas))
@@ -31,12 +30,8 @@ useEffect(()=>{
       if(data.login){
       setData(data);
     }
-    else{
-      setError(data.message)
-    }
     } catch (error) {
       console.log(error)
-      setError(error.message)
     }
   };
   fetchAll(search)
@@ -67,9 +62,7 @@ useEffect(()=>{
         </Col>
         <Col md={2}></Col>
       </Row>
-{errorMessage?<Alert variant="danger">{errorMessage}</Alert>:
-      <Row className="text-align py-3" style={{justifyContent: "center"}}>{search===""?<Alert variant="warning">Search the User</Alert>:mainPageItem()}</Row>
-}
+      <Row className="text-align py-3" style={{justifyContent: "center"}}>{!search?<Alert variant="warning">Search the User</Alert>:mainPageItem()}</Row>
       
     </div>
   );

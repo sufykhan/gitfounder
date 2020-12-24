@@ -40,7 +40,7 @@ useEffect(()=>{
 
   const {login,name,hireable,url,bio,type,avatar_url}=datas;
   const headings=["Name","GitName","Type","Hireable","GitLink","Bio"]
-  const headingData=[name,login,type,hireable,url,bio]
+  const headingData=[name?name:"No Data",login,type?type:"No Data",hireable?hireable:"No Data",url,bio?bio:"No Bio"]
   return (
     <div className="details" key={login}>
       <Row>

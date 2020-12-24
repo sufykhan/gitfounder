@@ -31,7 +31,7 @@ useEffect(()=>{
       setData(data);
     }
     } catch (error) {
-      console.log(error)
+      //console.log(error)
     }
   };
   fetchAll(search)

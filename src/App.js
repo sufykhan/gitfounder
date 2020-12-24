@@ -1,12 +1,12 @@
 import React from 'react'
-import {Route} from "react-router-dom"
+import {Route, Switch} from "react-router-dom"
 import CharacterDetail from './Screen/CharacterDetail'
 import MainPage from './Screen/MainPage'
 import Error from "./Screen/Error"
 const App = () => {
   return (
     <div>
-
+      <Switch>
         <Route exact path="/">
           <MainPage/>
         </Route>
@@ -16,7 +16,7 @@ const App = () => {
         <Route path="*">
           <Error/>
         </Route>
-     
+        </Switch>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
+  Alert,
   Col,
   FormControl,
   InputGroup,
@@ -51,7 +52,7 @@ const MainPage = () => {
         <Col md={2}></Col>
       </Row>
 
-      <Row className="text-align py-3" style={{justifyContent: "center"}}>{mainPageItem()}</Row>
+      <Row className="text-align py-3" style={{justifyContent: "center"}}>{datas==={}?<Alert variant="warning">Search the User</Alert>:mainPageItem()}</Row>
 
       
     </div>

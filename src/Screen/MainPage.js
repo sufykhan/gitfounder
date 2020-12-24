@@ -8,11 +8,16 @@ import {
   Row,
 } from "react-bootstrap";
 import CharacterArea from "../components/CharacterArea";
+// import { useHistory } from "react-router-dom";
+
 
 const MainPage = () => {
  
   const [datas, setData] = useState( (JSON.parse(localStorage.getItem("LocalStorageData"))) || {});
   const [search,setSearch]=useState("")
+  const [errorMessage,setError]=useState(null)
+  // const history=useHistory()
+
   useEffect(()=>{
     localStorage.setItem("LocalStorageData",JSON.stringify(datas))
   },[datas])
@@ -23,9 +28,15 @@ useEffect(()=>{
       const { data } = await axios.get(
         `https://api.github.com/users/${username}`
       );
+      if(data.login){
       setData(data);
+    }
+    else{
+      setError(data.message)
+    }
     } catch (error) {
-      console.log(error);
+      console.log(error)
+      setError(error.message)
     }
   };
   fetchAll(search)
@@ -56,9 +67,9 @@ useEffect(()=>{
         </Col>
         <Col md={2}></Col>
       </Row>
-
-      <Row className="text-align py-3" style={{justifyContent: "center"}}>{datas==={}?<Alert variant="warning">Search the User</Alert>:mainPageItem()}</Row>
-
+{errorMessage?<Alert variant="danger">{errorMessage}</Alert>:
+      <Row className="text-align py-3" style={{justifyContent: "center"}}>{search===""?<Alert variant="warning">Search the User</Alert>:mainPageItem()}</Row>
+}
       
     </div>
   );

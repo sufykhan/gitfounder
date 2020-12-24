@@ -42,7 +42,7 @@ useEffect(()=>{
   const headings=["Name","GitName","Type","Hireable","GitLink","Bio"]
   const headingData=[name,login,type,hireable,url,bio]
   return (
-    <div className="details">
+    <div className="details" key={login}>
       <Row>
         <Col md={6}>
           <Card>
